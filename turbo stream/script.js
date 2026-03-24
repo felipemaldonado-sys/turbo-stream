@@ -43,7 +43,7 @@ twitchScript.onload = () => {
     width: "100%",
     height: "100%",
     channel: "felipe_maldonado2",
-    parent: ["comfy-paletas-570a13.netlify.app", "localhost"],
+    parent: ["turbo-stream-xxx.vercel.app"],
     muted: true,
     autoplay: true
   });
