@@ -4,7 +4,6 @@
 
 :root {
   --bg: #070707;
-  --panel: #111111;
   --white: #ffffff;
   --muted: rgba(255, 255, 255, 0.68);
   --green: #11a63d;
@@ -248,6 +247,28 @@ body {
   white-space: nowrap;
 }
 
+.stream-switcher {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stream-tab {
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: white;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.stream-tab.active {
+  background: rgba(255, 90, 60, 0.18);
+  border-color: rgba(255, 90, 60, 0.5);
+  color: #ff9b87;
+}
+
 .stream-frame {
   width: 100%;
   border-radius: 28px;
@@ -258,12 +279,14 @@ body {
   min-height: 560px;
 }
 
-#twitch-player {
+.stream-frame iframe {
   width: 100%;
   height: 620px;
   min-width: 400px;
   min-height: 300px;
+  border: 0;
   background: #111;
+  display: block;
 }
 
 .products-section {
@@ -380,12 +403,8 @@ body {
 }
 
 @keyframes productsScroll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .products-marquee:hover .products-track {
@@ -404,7 +423,7 @@ body {
     min-height: 420px;
   }
 
-  #twitch-player {
+  .stream-frame iframe {
     height: 420px;
   }
 }
@@ -446,7 +465,7 @@ body {
     width: 46px;
   }
 
-  #twitch-player {
+  .stream-frame iframe {
     height: 320px;
     min-width: 0;
   }
