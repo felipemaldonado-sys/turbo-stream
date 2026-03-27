@@ -27,9 +27,10 @@
       <section class="hero">
         <div class="hero-copy">
           <div id="timer" class="timer-pill">Turbo 15:00</div>
-          <h1>Observa en tiempo real cómo se alista el pedido.</h1>
+          <h1>Observa en tiempo real cómo se prepara el pedido.</h1>
           <p>
-            DEMO
+            Una experiencia visual inspirada en quick commerce para transmitir
+            velocidad, transparencia y confianza durante la selección del pedido.
           </p>
         </div>
       </section>
@@ -37,7 +38,7 @@
       <section class="status-card">
         <div class="status-header">
           <h2>Seleccionando los productos</h2>
-          <span class="status-badge">Tiempo real</span>
+          <span class="status-badge">Pedido en preparación</span>
         </div>
 
         <div class="progress-row">
@@ -55,20 +56,34 @@
         <div class="stream-header">
           <div>
             <p class="stream-kicker">Visual operativa</p>
-            <h3>Vista en vivo </h3>
+            <h3>Vista en vivo de preparación</h3>
           </div>
           <div class="stream-tag">Twitch Feed</div>
         </div>
 
+        <div class="stream-switcher">
+          <button class="stream-tab active" data-channel="felipe_maldonado2">
+            Stream 1
+          </button>
+          <button class="stream-tab" data-channel="OTRO_CANAL_AQUI">
+            Stream 2
+          </button>
+        </div>
+
         <div class="stream-frame">
-          <div id="twitch-player"></div>
+          <iframe
+            id="twitchFrame"
+            src=""
+            title="Twitch Live"
+            allowfullscreen>
+          </iframe>
         </div>
       </section>
 
       <section class="products-section">
         <div class="products-header">
           <div>
-            <p class="products-kicker">Se estan seleccionando los productos</p>
+            <p class="products-kicker">Pedido en preparación</p>
             <h3>Productos seleccionados</h3>
           </div>
           <span class="products-badge">Actualización en vivo</span>
