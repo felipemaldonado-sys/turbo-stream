@@ -26,7 +26,6 @@ let direction = 1;
 
 setInterval(() => {
   progress += direction * 2;
-
   if (progress >= 70) direction = -1;
   if (progress <= 52) direction = 1;
 
@@ -35,18 +34,41 @@ setInterval(() => {
   }
 }, 500);
 
-const twitchScript = document.createElement("script");
-twitchScript.src = "https://player.twitch.tv/js/embed/v1.js";
+// CAMBIA ESTO POR TU DOMINIO EXACTO PUBLICADO
+const SITE_HOST = "TU-DOMINIO-EXACTO.vercel.app";
 
-twitchScript.onload = () => {
-  new Twitch.Player("twitch-player", {
-    width: "100%",
-    height: "100%",
-    channel: "felipe_maldonado2",
-    parent: ["turbo-stream-xxx.vercel.app"],
-    muted: true,
-    autoplay: true
+// CAMBIA ESTO POR EL SEGUNDO CANAL REAL
+const streams = [
+  {
+    label: "Stream 1",
+    channel: "felipe_maldonado2"
+  },
+  {
+    label: "Stream 2",
+    channel: "OTRO_CANAL_AQUI"
+  }
+];
+
+const twitchFrame = document.getElementById("twitchFrame");
+const tabs = document.querySelectorAll(".stream-tab");
+
+function buildTwitchUrl(channel) {
+  return `https://player.twitch.tv/?channel=${channel}&parent=${SITE_HOST}&muted=true&autoplay=true`;
+}
+
+function setStream(channel) {
+  if (twitchFrame) {
+    twitchFrame.src = buildTwitchUrl(channel);
+  }
+}
+
+tabs.forEach((tab) => {
+  tab.addEventListener("click", () => {
+    tabs.forEach((btn) => btn.classList.remove("active"));
+    tab.classList.add("active");
+    setStream(tab.dataset.channel);
   });
-};
+});
 
-document.body.appendChild(twitchScript);
+// stream inicial
+setStream(streams[0].channel);
