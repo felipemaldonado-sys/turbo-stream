@@ -34,41 +34,66 @@ setInterval(() => {
   }
 }, 500);
 
-// CAMBIA ESTO POR TU DOMINIO EXACTO PUBLICADO
-const SITE_HOST = "TU-DOMINIO-EXACTO.vercel.app";
+// CAMBIA SOLO EL SEGUNDO CANAL
+const STREAM_1 = "felipe_maldonado2";
+const STREAM_2 = "OTRO_CANAL_AQUI";
 
-// CAMBIA ESTO POR EL SEGUNDO CANAL REAL
-const streams = [
-  {
-    label: "Stream 1",
-    channel: "felipe_maldonado2"
-  },
-  {
-    label: "Stream 2",
-    channel: "OTRO_CANAL_AQUI"
-  }
-];
+let player1;
+let player2;
 
-const twitchFrame = document.getElementById("twitchFrame");
-const tabs = document.querySelectorAll(".stream-tab");
-
-function buildTwitchUrl(channel) {
-  return `https://player.twitch.tv/?channel=${channel}&parent=${SITE_HOST}&muted=true&autoplay=true`;
-}
-
-function setStream(channel) {
-  if (twitchFrame) {
-    twitchFrame.src = buildTwitchUrl(channel);
-  }
-}
-
-tabs.forEach((tab) => {
-  tab.addEventListener("click", () => {
-    tabs.forEach((btn) => btn.classList.remove("active"));
-    tab.classList.add("active");
-    setStream(tab.dataset.channel);
+function activateTab(streamKey) {
+  const tabs = document.querySelectorAll(".stream-tab");
+  tabs.forEach((tab) => {
+    tab.classList.toggle("active", tab.dataset.stream === streamKey);
   });
-});
 
-// stream inicial
-setStream(streams[0].channel);
+  const playerEl1 = document.getElementById("twitch-player-1");
+  const playerEl2 = document.getElementById("twitch-player-2");
+
+  if (streamKey === "stream1") {
+    playerEl1.classList.remove("hidden-player");
+    playerEl1.classList.add("active-player");
+    playerEl2.classList.add("hidden-player");
+    playerEl2.classList.remove("active-player");
+  } else {
+    playerEl2.classList.remove("hidden-player");
+    playerEl2.classList.add("active-player");
+    playerEl1.classList.add("hidden-player");
+    playerEl1.classList.remove("active-player");
+  }
+}
+
+const twitchScript = document.createElement("script");
+twitchScript.src = "https://player.twitch.tv/js/embed/v1.js";
+
+twitchScript.onload = () => {
+  player1 = new Twitch.Player("twitch-player-1", {
+    width: "100%",
+    height: "100%",
+    channel: STREAM_1,
+    parent: ["comfy-paletas-570a13.netlify.app", "localhost"],
+    muted: true,
+    autoplay: true
+  });
+
+  player2 = new Twitch.Player("twitch-player-2", {
+    width: "100%",
+    height: "100%",
+    channel: STREAM_2,
+    parent: ["comfy-paletas-570a13.netlify.app", "localhost"],
+    muted: true,
+    autoplay: false
+  });
+
+  activateTab("stream1");
+
+  const tabs = document.querySelectorAll(".stream-tab");
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const target = tab.dataset.stream;
+      activateTab(target);
+    });
+  });
+};
+
+document.body.appendChild(twitchScript);
