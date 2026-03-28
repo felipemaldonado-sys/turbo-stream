@@ -277,15 +277,22 @@ body {
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
   min-height: 560px;
+  position: relative;
 }
 
-.stream-frame iframe {
+.twitch-player {
   width: 100%;
   height: 620px;
   min-width: 400px;
   min-height: 300px;
-  border: 0;
   background: #111;
+}
+
+.hidden-player {
+  display: none;
+}
+
+.active-player {
   display: block;
 }
 
@@ -423,7 +430,7 @@ body {
     min-height: 420px;
   }
 
-  .stream-frame iframe {
+  .twitch-player {
     height: 420px;
   }
 }
@@ -465,7 +472,7 @@ body {
     width: 46px;
   }
 
-  .stream-frame iframe {
+  .twitch-player {
     height: 320px;
     min-width: 0;
   }
