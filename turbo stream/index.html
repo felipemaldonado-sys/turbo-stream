@@ -62,21 +62,13 @@
         </div>
 
         <div class="stream-switcher">
-          <button class="stream-tab active" data-channel="felipe_maldonado2">
-            Stream 1
-          </button>
-          <button class="stream-tab" data-channel="OTRO_CANAL_AQUI">
-            Stream 2
-          </button>
+          <button class="stream-tab active" data-stream="stream1">Stream 1</button>
+          <button class="stream-tab" data-stream="stream2">Stream 2</button>
         </div>
 
         <div class="stream-frame">
-          <iframe
-            id="twitchFrame"
-            src=""
-            title="Twitch Live"
-            allowfullscreen>
-          </iframe>
+          <div id="twitch-player-1" class="twitch-player active-player"></div>
+          <div id="twitch-player-2" class="twitch-player hidden-player"></div>
         </div>
       </section>
 
