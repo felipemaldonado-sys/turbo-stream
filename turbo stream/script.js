@@ -34,9 +34,8 @@ setInterval(() => {
   }
 }, 500);
 
-// CAMBIA SOLO EL SEGUNDO CANAL
 const STREAM_1 = "felipe_maldonado2";
-const STREAM_2 = "OTRO_CANAL_AQUI";
+const STREAM_2 = "felipe_maldonado123";
 
 let player1;
 let player2;
